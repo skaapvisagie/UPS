@@ -65,10 +65,12 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-
+    
+    EPWM_LoadDutyValue(500);
+    
     while (1)
     {
-        if(PA1)EPWM_LoadDutyValue(10);
+        
         
     }
 }

@@ -147,6 +147,90 @@ void PIN_MANAGER_Initialize (void);
 void PIN_MANAGER_IOC(void);
 
 
+/**
+ * @Param
+    none
+ * @Returns
+    none
+ * @Description
+    Interrupt on Change Handler for the IOCAF1 pin functionality
+ * @Example
+    IOCAF1_ISR();
+ */
+void IOCAF1_ISR(void);
+
+/**
+  @Summary
+    Interrupt Handler Setter for IOCAF1 pin interrupt-on-change functionality
+
+  @Description
+    Allows selecting an interrupt handler for IOCAF1 at application runtime
+    
+  @Preconditions
+    Pin Manager intializer called
+
+  @Returns
+    None.
+
+  @Param
+    InterruptHandler function pointer.
+
+  @Example
+    PIN_MANAGER_Initialize();
+    IOCAF1_SetInterruptHandler(MyInterruptHandler);
+
+*/
+void IOCAF1_SetInterruptHandler(void (* InterruptHandler)(void));
+
+/**
+  @Summary
+    Dynamic Interrupt Handler for IOCAF1 pin
+
+  @Description
+    This is a dynamic interrupt handler to be used together with the IOCAF1_SetInterruptHandler() method.
+    This handler is called every time the IOCAF1 ISR is executed and allows any function to be registered at runtime.
+    
+  @Preconditions
+    Pin Manager intializer called
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    PIN_MANAGER_Initialize();
+    IOCAF1_SetInterruptHandler(IOCAF1_InterruptHandler);
+
+*/
+extern void (*IOCAF1_InterruptHandler)(void);
+
+/**
+  @Summary
+    Default Interrupt Handler for IOCAF1 pin
+
+  @Description
+    This is a predefined interrupt handler to be used together with the IOCAF1_SetInterruptHandler() method.
+    This handler is called every time the IOCAF1 ISR is executed. 
+    
+  @Preconditions
+    Pin Manager intializer called
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    PIN_MANAGER_Initialize();
+    IOCAF1_SetInterruptHandler(IOCAF1_DefaultInterruptHandler);
+
+*/
+void IOCAF1_DefaultInterruptHandler(void);
+
+
 
 #endif // PIN_MANAGER_H
 /**

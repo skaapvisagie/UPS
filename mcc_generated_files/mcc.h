@@ -56,8 +56,8 @@
 #include "tmr2.h"
 #include "tmr0.h"
 #include "fvr.h"
-#include "ext_int.h"
 #include "memory.h"
+#include "ext_int.h"
 #include "adc.h"
 
 
