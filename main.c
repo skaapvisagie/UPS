@@ -42,6 +42,7 @@
 */
 
 #include "mcc_generated_files/mcc.h"
+#include "main.h"
 
 /*
                          Main application
@@ -70,7 +71,20 @@ void main(void)
     
     while (1)
     {
-        
+      // main state machine
+        switch(CurrentState)
+        {
+            case e_Charging:
+                break;
+                
+            case e_Float:
+                break;
+             
+            case e_BatPower:
+                break; 
+                
+                        
+        }// end state machine switch
         
     }
 }
