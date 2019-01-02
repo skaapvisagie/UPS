@@ -67,14 +67,23 @@ void main(void)
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
     
+    CurrentState = e_Init;
+            
     EPWM_LoadDutyValue(500);
+    
+    
     
     while (1)
     {
       // main state machine
         switch(CurrentState)
         {
+            case e_Init:
+                CurrentState = e_Charging;
+                break;
+                
             case e_Charging:
+                Calabrate_Chrage_Pwm();
                 break;
                 
                 
@@ -88,6 +97,35 @@ void main(void)
         }// end state machine switch
         
     }
+}
+
+void Calabrate_Chrage_Pwm(void)
+{
+    uint16_t Batt_Voltage = 0;
+    
+    //check Batt voltage
+    Batt_Voltage = ADC_GetConversion(channel_AN0);
+    
+    if(Batt_Voltage <= Batt_Dead)
+    {   
+        Batt_Status = e_Batt_Dead;
+    }else if(Batt_Voltage > Batt_Dead || Batt_Voltage <= Batt_flaot)
+     {
+        Batt_Status = e_Batt_Charge;
+     }
+    else if(Batt_Voltage > Batt_flaot)
+     {
+        Batt_Status = e_Batt_Full;
+     }
+    
+    switch(Batt_Status)
+    {
+        case Batt_Dead:
+            // make counter to see if battery is dead
+            
+            break;
+    }
+    
 }
 /**
  End of File
